@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <math.h>
 #include <malloc.h>
@@ -76,6 +75,7 @@ int XV_Convert(char* src_file) {
     fclose(fin);
     fclose(fout);
     printf("convert failed\n");
+    free(fb);
     return -1;
 
 ok:
@@ -112,15 +112,16 @@ ok:
     printf("100\n");
     fclose(fin);
     fclose(fout);
-
+    free(fb);
+    
     return 0;
 }
 
 int main(int argc, char *argv[])
 {
-    if (argc !=2) {
+    if (argc != 2) {
         printf("usage: convert xunlei xv video format to other format.\n");
-        printf("    %s filename\n", argv[0]);
+        printf("    %s xv_filename\n", argv[0]);
         return 0;
     }
 
