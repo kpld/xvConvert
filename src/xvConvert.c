@@ -8,7 +8,8 @@
 
 int XV_Convert(char* src_file) {
     char *fb, peek[5];
-    int mn, type, l, rl, c, fail;
+    int mn, type, l, c, fail;
+    size_t rl;
     char *ts=NULL;
     char *video_type[7] = {"rmvb", "wmv", "flv", "avi", "mp4", "mpg", "mkv"};
     char val[7]={46, 48, 70, 82, 0, 0, 26};
