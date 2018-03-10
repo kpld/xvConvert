@@ -65,8 +65,8 @@ int XV_Convert(char* src_file) {
         goto ok;
     }
 
-    strcpy_s(dst_file, strlen(src_file)+1, src_file);
-    strcat_s(dst_file,strlen(".new")+1, ".new");
+    strcpy(dst_file, src_file);
+    strcat(dst_file, ".new");
     fout = fopen(dst_file, "wb");
     if (fout==NULL) { fclose(fin); return -2; }
     fwrite(fb, 0, 0x200000, fout);
@@ -83,9 +83,9 @@ int XV_Convert(char* src_file) {
 
 ok:
     ts = video_type[type-1];
-    strcpy_s(dst_file, strlen(src_file)+1, src_file);
-    strcat_s(dst_file, strlen(".")+1, ".");
-    strcat_s(dst_file, strlen(ts)+1, ts);
+    strcpy(dst_file, src_file);
+    strcat(dst_file, ".");
+    strcat(dst_file, ts);
     fout = fopen(dst_file, "wb");
     peek[0] = val[type-1];
     for (j=1; j<=3; j++) {
