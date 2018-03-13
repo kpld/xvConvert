@@ -8,7 +8,7 @@ platform:
   - x64
 
 configuration: 
-  - Releas
+  - Release
   
 after_build:
   - cmd: 7z a -tzip xvConvert_%platform%-v%APPVEYOR_BUILD_VERSION%.zip bin/ -xr@x_fn.txt
