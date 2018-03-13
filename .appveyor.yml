@@ -1,0 +1,36 @@
+image:
+  - Visual Studio 2015
+before_build:
+  - cmd: premake.bat
+  
+platform:
+  - Win32
+  - x64
+
+configuration: 
+  - Releas
+  
+after_build:
+  - cmd: 7z a -tzip xvConvert_%platform%-v%APPVEYOR_BUILD_VERSION%.zip bin/ -xr@x_fn.txt
+  - cmd: 7z a -tzip xvConvert_%platform%-v%APPVEYOR_BUILD_VERSION%.zip Convert_files.bat
+  - ps: Get-ChildItem .\*.zip | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+
+deploy:
+   release: xvConvert-v%APPVEYOR_BUILD_VERSION%
+   description: "build with appveyor"
+   provider: GitHub
+   auth_token:
+    secure: YiRkHuWnabCRwdYGhwkPZRSUJmVb/UeKn3YEQ+0mLTfIsGKrVUfDKdObe/MsYf1A
+   draft: false
+   prerelease: false
+   on:
+      branch: master
+#   appveyor_repo_tag: false
+
+on_success:
+- ps: >-
+    if ($true)
+
+    {
+      Write-Host "Success"
+    }
